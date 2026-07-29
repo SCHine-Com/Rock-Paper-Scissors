@@ -2,7 +2,12 @@ const humanScore = 0;
 const computerScore = 0;
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
-const readline = require("readline");
+import readline from "node:readline";
+const rl = readline.createInterface({
+input: process.stdin,
+output:process.stdout
+});
+
 
 function getRandomInt(max)
 {   
@@ -32,8 +37,9 @@ console.log(getComputerChoice())
 
 function getHumanChoice()
 {
-    let choice = prompt("Rock, Paper, Scissors?").toUpperCase();
+    let choice = textbox.prompt("Rock, Paper, Scissors?").toUpperCase();
     
+rl.close();
     if (choice === "ROCK")
     {
         return "Rock";
@@ -105,14 +111,14 @@ function playGame()
 
     if (computerScore > humanScore) 
     {
-        "You lost. Computer Wins."
+        "You lost. Computer Wins.";
     }
     else if (humanScore > computerScore)
     {
-        "You won. Computer Lost."
+        "You won. Computer Lost.";
     }
     else
     {
-        "Glitch in the system."
+        "Glitch in the system.";
     }
 }
