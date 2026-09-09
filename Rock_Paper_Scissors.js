@@ -1,13 +1,10 @@
 const humanScore = 0;
 const computerScore = 0;
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-import readline from "node:readline";
-const rl = readline.createInterface({
-input: process.stdin,
-output:process.stdout
-});
-
+const humanSelection = "string";
+const computerSelection = "string";
+const Rock = document.querySelector("#Rock");
+const Scissors = document.querySelector("#Scissors");
+const Paper = document.querySelector("#Paper");
 
 function getRandomInt(max)
 {   
@@ -17,10 +14,9 @@ function getRandomInt(max)
 function getComputerChoice()
 {   
     let random = getRandomInt(3)
-
     if (random === 0)
     {
-        return "Scissors";
+       return "Scissors";
     }
     else if (random === 1)
     {
@@ -29,96 +25,90 @@ function getComputerChoice()
     else 
     {
         return "Paper";
-        
     }
 
 }
-console.log(getComputerChoice())
+    function humanChoice()
+{  
+    Rock.addEventListener("click", function() {
+    let humanSelection = "Rock";
+    let computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  })
 
-function getHumanChoice()
-{
-    let choice = textbox.prompt("Rock, Paper, Scissors?").toUpperCase();
-    
-rl.close();
-    if (choice === "ROCK")
-    {
-        return "Rock";
-    }
-    else if (choice === "SCISSORS")
-    {
-        return "Scissors";
-    }
-    else if (choice === "PAPER")
-    {  
-        return "Paper";
-    }
-    else 
-    {
-        return "Try Again";
-    }
+  Scissors.addEventListener("click", function() {
+    let humanSelection = "Scissors";
+    let computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  })
 
+    Paper.addEventListener("click", function() {  
+    let humanSelection = "Paper";
+    let computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+}) 
 }
+humanChoice();
+function playRound(humanSelection, computerSelection)
+{   const div = document.createElement("div");
+    div.style.paddingleft = "500px";
+    div.style.color = "green";
+    document.body.appendChild(div);
 
-function playRound(humanChoice, computerChoice)
-{
-    humanChoice = getHumanChoice();
-    computerChoice = getComputerChoice();
-
-    if (humanChoice === "ROCK" && computerChoice === "Paper")
+    if (humanSelection === "Rock" && computerSelection === "Paper")
     {   
-        return "You Lose Buddy.";
-        computerScore = +1;
+        div.textContent = "You lose Buddy.";
+        computerScore += 1;
     }
-    else if (humanChoice === "PAPER" && computerChoice === "Rock")
+    else if (humanSelection === "Paper" && computerSelection === "Rock")
     {
-        return "You win I guess.";
-        humanScore = +1;
+        div.textContent = "You win I guess.";
+        humanScore +=   1;
     }
-    else if (humanChoice === "SCISSORS" && computerChoice === "Paper")
+    else if (humanSelection === "Scissors" && computerSelection === "Paper")
     {
-        return "You win I guess.";
-        humanScore = +1;
+        div.textContent = "You win I guess.";
+        humanScore +=  1;
     }
-    else if (humanChoice === "ROCK" && computerChoice === "Scissors")
+    else if (humanSelection === "Rock" && computerSelection === "Scissors")
     {
-        return "You win I guess.";
-        humanScore = +1;
+        div.textContent = "You win I guess.";
+        humanScore += 1;
     }
-    else if (humanChoice === "PAPER" && computerChoice === "Scissors")
+    else if (humanSelection === "Paper" && computerSelection === "Scissors")
     {
-        return "You lose Buddy.";
-        computerScore = +1;
+        div.textContent = "You lose Buddy.";
+        computerScore += 1;
     }
-    else if (humanChoice === "SCISSORS" && computerChoice === "Rock")
+    else if (humanSelection === "Scissors" && computerSelection === "Rock")
     {
-        return "You lose Buddy.";
-        computerScore = +1;
+        div.textContent = "You lose Buddy.";
+        computerScore += 1;
     }
     else 
     {
-        return "Try Again";
+        div.textContent = "Try Again";
     }
 
 } 
 
 function playGame()
-{
-    console.log(playRound(humanChoice, ComputerChoice))
-    console.log(playRound(humanChoice, ComputerChoice))
-    console.log(playRound(humanChoice, ComputerChoice))
-    console.log(playRound(humanChoice, ComputerChoice))
-    console.log(playRound(humanChoice, ComputerChoice))
+{   
+    const div = document.createElement("div");
 
-    if (computerScore > humanScore) 
+    if (computerScore > 5) 
     {
-        "You lost. Computer Wins.";
+        div.textContent = "You lost. Computer Wins.";
+        document.body.appendChild(div);
     }
-    else if (humanScore > computerScore)
+    else if (humanScore > 5)
     {
-        "You won. Computer Lost.";
+        div.textContent = "You won. Computer Lost.";
+        document.body.appendChild(div);
     }
     else
     {
-        "Glitch in the system.";
+        div.textContent = "Glitch in the system.";
+        document.body.appendChild(div);
     }
 }
