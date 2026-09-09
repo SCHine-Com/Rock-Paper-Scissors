@@ -1,5 +1,9 @@
-const humanScore = 0;
-const computerScore = 0;
+let humanScore = 0;
+let computerScore = 0;
+
+let humanScoreDisplay = document.querySelector("#human_score");
+let computerScoreDisplay = document.querySelector("#computer_score");
+
 const humanSelection = "string";
 const computerSelection = "string";
 const Rock = document.querySelector("#Rock");
@@ -33,25 +37,25 @@ function getComputerChoice()
     Rock.addEventListener("click", function() {
     let humanSelection = "Rock";
     let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection, humanScore, computerScore);
   })
 
   Scissors.addEventListener("click", function() {
     let humanSelection = "Scissors";
     let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection, humanScore, computerScore);
   })
 
     Paper.addEventListener("click", function() {  
     let humanSelection = "Paper";
     let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
+    playRound(humanSelection, computerSelection, humanScore, computerScore);
 }) 
 }
 humanChoice();
 function playRound(humanSelection, computerSelection)
 {   const div = document.createElement("div");
-    div.style.paddingleft = "500px";
+    div.style.paddingLeft = "500px";
     div.style.color = "green";
     document.body.appendChild(div);
 
@@ -63,12 +67,12 @@ function playRound(humanSelection, computerSelection)
     else if (humanSelection === "Paper" && computerSelection === "Rock")
     {
         div.textContent = "You win I guess.";
-        humanScore +=   1;
+        humanScore += 1;
     }
     else if (humanSelection === "Scissors" && computerSelection === "Paper")
     {
         div.textContent = "You win I guess.";
-        humanScore +=  1;
+        humanScore += 1;
     }
     else if (humanSelection === "Rock" && computerSelection === "Scissors")
     {
@@ -89,26 +93,30 @@ function playRound(humanSelection, computerSelection)
     {
         div.textContent = "Try Again";
     }
+    humanScoreDisplay.textContent = `Player: ${humanScore}`;
+    computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+    if (humanScore === 5 || computerScore === 5)
+    {
+        playGame();
+    }
 
 } 
 
-function playGame()
+function playGame(humanScore, computerScore)
 {   
     const div = document.createElement("div");
 
     if (computerScore > 5) 
     {
         div.textContent = "You lost. Computer Wins.";
-        document.body.appendChild(div);
     }
     else if (humanScore > 5)
     {
-        div.textContent = "You won. Computer Lost.";
-        document.body.appendChild(div);
+        div.textContent = "You won. Computer Lost.";   
     }
     else
     {
-        div.textContent = "Glitch in the system.";
-        document.body.appendChild(div);
+        div.textContent = "Glitch in the system.";  
     }
+    document.body.appendChild(div);
 }
