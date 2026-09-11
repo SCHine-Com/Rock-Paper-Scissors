@@ -10,11 +10,13 @@ const Rock = document.querySelector("#Rock");
 const Scissors = document.querySelector("#Scissors");
 const Paper = document.querySelector("#Paper");
 
+//Function that generates a random integer between 0 and max. Function used for computer Choice
 function getRandomInt(max)
 {   
     return Math.floor(Math.random() * max);
 }
 
+//Function that randomly generates the computer's choice of rock, paper, or scissors
 function getComputerChoice()
 {   
     let random = getRandomInt(3)
@@ -32,6 +34,7 @@ function getComputerChoice()
     }
 
 }
+//Function that takes the human choice and computer choice and plays a round of rock paper scissors
     function humanChoice()
 {  
     Rock.addEventListener("click", function() {
@@ -53,6 +56,8 @@ function getComputerChoice()
 }) 
 }
 humanChoice();
+
+//function that decides the winner of each round and updates the score accordingly
 function playRound(humanSelection, computerSelection)
 {   const div = document.createElement("div");
     div.style.paddingLeft = "500px";
@@ -93,6 +98,8 @@ function playRound(humanSelection, computerSelection)
     {
         div.textContent = "Try Again";
     }
+
+    // Update the score onto the screen
     humanScoreDisplay.textContent = `Player: ${humanScore}`;
     computerScoreDisplay.textContent = `Computer: ${computerScore}`;
     if (humanScore === 5 || computerScore === 5)
@@ -102,6 +109,7 @@ function playRound(humanSelection, computerSelection)
 
 } 
 
+// Function to play the game and display the winner when either player reaches 5 points
 function playGame(humanScore, computerScore)
 {   
     const div = document.createElement("div");
