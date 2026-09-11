@@ -97,7 +97,7 @@ function playRound(humanSelection, computerSelection)
     computerScoreDisplay.textContent = `Computer: ${computerScore}`;
     if (humanScore === 5 || computerScore === 5)
     {
-        playGame();
+        playGame(humanScore, computerScore);
     }
 
 } 
@@ -106,13 +106,17 @@ function playGame(humanScore, computerScore)
 {   
     const div = document.createElement("div");
 
-    if (computerScore > 5) 
+    if (computerScore === 5) 
     {
         div.textContent = "You lost. Computer Wins.";
+        computerScore = 0;
+        humanScore = 0;
     }
-    else if (humanScore > 5)
+    else if (humanScore === 5)
     {
         div.textContent = "You won. Computer Lost.";   
+        computerScore = 0;
+        humanScore = 0;
     }
     else
     {
